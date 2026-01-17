@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoomoonNerd | Catálogo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: white;
+    }
+    
+    
+
+    /* Banner com vídeo */
+    .banner {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Container geral */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 15px;
+    }
+
+    /* Perfil */
+    .profile {
+      position: relative;
+      margin-top: -70px;
+    }
+
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #111;
+      box-shadow: 0 0 12px #a060e5;
+      background: #111;
+    }
+
+    .profile h1 {
+      font-size: 24px;
+      margin: 10px 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .verified {
+      width: 20px;
+      height: 20px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    /* Catálogo */
+    .catalogo {
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .catalogo h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      border-left: 4px solid #a060e5;
+      padding-left: 10px;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .produto {
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .produto:hover {
+      transform: scale(1.03);
+    }
+
+    .produto img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .produto h3 {
+      font-size: 16px;
+      margin: 10px 0 5px;
+    }
+
+    .produto p {
+      font-size: 13px;
+      color: #bbb;
+      margin: 5px 0;
+    }
+
+    .preco {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 8px 0;
+      color: #a060e5;
+    }
+
+    .botoes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .produto a, .info-btn {
+      display: block;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .produto a {
+      background: #a060e5;
+      color: white;
+    }
+
+    .info-btn {
+      background: #333;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+
+    .produto a:hover, .info-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 15px #a060e5;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+    }
+
+    .close {
+      margin-top: 15px;
+      background: #a060e5;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+  
+  
+  <a href="https://wa.me/557192793089?text=Ol%C3%A1%2C+preciso+de+suporte" class="skz-suporte">
+  <img src="https://files.catbox.moe/reifey.jpg" alt="Stray Kids">
+  <span>Suporte</span>
+</a>
+
+<style>
+.skz-suporte {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #6e00ff;
+  padding: 10px 16px;
+  border-radius: 46px;
+  text-decoration: none;
+  box-shadow: 0 0 14px #6e00ff;
+  z-index: 99999;
+  transition: .2s;
+}
+
+.skz-suporte:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 18px #9a50ff;
+}
+
+.skz-suporte img {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.skz-suporte span {
+  color: #fff;
+  font-weight: 700;
+  font-family: sans-serif;
+  font-size: 16px;
+}
+</style>
+
+</head>
+<body>
+
+  <!-- Banner com vídeo -->
+
+<style>
+  #soundBtn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: #000000aa;
+    color: #fff;
+    border: 0;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+</style>
+
+<div class="banner" style="position:relative;">
+  <video id="bannerVideo" autoplay loop playsinline muted style="width:100%;">
+    <source src="https://files.catbox.moe/9cjzo1.mp4" type="video/mp4">
+  </video>
+
+  <button id="soundBtn">🔊 Ligar Som</button>
+</div>
+
+<script>
+  const video = document.getElementById('bannerVideo');
+  const btn = document.getElementById('soundBtn');
+
+  let audioLigado = false;
+
+  btn.addEventListener("click", () => {
+    audioLigado = !audioLigado;
+
+    if (audioLigado) {
+      video.muted = false;
+      video.play();
+      btn.textContent = "🔇 Mutar Som";
+    } else {
+      video.muted = true;
+      btn.textContent = "🔊 Ligar Som";
+    }
+  });
+</script>
+
+
+
+  <div class="container">
+    <!-- Perfil -->
+    <div class="profile">
+      <img src="https://files.catbox.moe/gdrgx6.png" alt="Perfil">
+      <h1>
+        SoomoonNerd 
+        <svg class="verified" viewBox="0 0 24 24" fill="#1da1f2" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 12l-2.12-2.12.3-2.83-2.83-.3L16 4l-2.12 2.12L12 4 9.88 6.12 7 4l-.3 2.83L4 9.88 6.12 12 4 14.12l2.12 2.12-.3 2.83 2.83.3L12 20l2.12-2.12L16 20l2.12-2.12 2.83.3.3-2.83L20 14.12 22 12zm-12 3l-3-3 1.41-1.41L10 12.17l4.59-4.59L16 9l-6 6z"/>
+        </svg>
+      </h1>
+      <div class="subtitle">👨‍💻 Criador / Desenvolvedor</div>
+    </div>
+
+<div class="catalogo">
+      <h2>🤖 Bots & Diversos</h2>
+      <div class="produtos">
+        <!-- Produto Bot -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/c0ks7c.jpg" alt="Produto Bot">
+          <h3>Seu Bot personalizado com +30 comandos (Cript)</h3>
+          <p>Tenha seu próprio bot Personalizado.</p>
+          <div class="preco">R$ 13,15</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Bot personalizado +30 comandos', 'Um bot único feito sob medida para você, com mais de 30 comandos exclusivos.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="catalogo">
+      <div class="produtos">
+        <!-- Produto Bot -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/i3a01c.jpg" alt="Produto Bot">
+          <h3>Seu Bot personalizado com +50 comandos</h3>
+          <p>Tenha seu próprio bot Personalizado.</p>
+          <div class="preco">R$ 20,45</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Bot personalizado +50 comandos', 'Um bot único feito sob medida para você, com mais de 50 comandos exclusivos.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="catalogo">
+      <div class="produtos">
+        <!-- Produto Bot -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/zjea9k.jpg" alt="Produto Bot">
+          <h3>Seu Bot personalizado você escolhe quantos comandos</h3>
+          <p>Tenha seu próprio bot Personalizado.</p>
+          <div class="preco">R$ 99999</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Bot personalizado +50 comandos', 'Um bot único feito sob medida para você, com mais de 50 comandos exclusivos.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="catalogo">
+      <div class="produtos">
+        <!-- Produto Bot -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/zf6569.jpg" alt="Produto Bot">
+          <h3>Seu Bot personalizado com +150 comandos + Hospedagem permanente</h3>
+          <p>Tenha seu próprio bot Personalizado.</p>
+          <div class="preco">R$ 70,50</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Bot personalizado +150 comandos e hospedagem', 'Um bot único feito sob medida para você, com mais de 150 comandos exclusivos e com hospodagem pra fica 24 horas online.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="catalogo">
+      <div class="produtos">
+        <!-- Produto Bot -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/l9gma3.jpg" alt="Produto Bot">
+          <h3>Alugar a Kanade Charlote - Bot</h3>
+          <p>Aluguel da Kanade Charlote - Bot com 550 comandos atuamente.</p>
+          <div class="preco">R$ 6,50</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Kanade Charlote - Bot', 'Kanade Charlote - Bot 200 comandos, rapida e pronta para o seu grupo.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="catalogo">
+      <div class="produtos">
+        <!-- Produto Bot -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/7odrif.jpg" alt="Produto Bot">
+          <h3>Bot aleatorio para seu grupo de aluguel.</h3>
+          <p>Bot aleatorio para seu grupo.</p>
+          <div class="preco">R$ 5,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Bot normal aleatorio para administra grupos', 'Um bot aleatorio com comandos de brincadeiras, administração, baixar entre outros...')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Catálogo -->
+    <div class="catalogo">
+      <h2>📱 Seguidores WhatsApp</h2>
+      <div class="produtos">
+        <!-- Produto 1 -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/7pro5g.jpg" alt="Produto 1">
+          <h3>Canal Whatsapp com +250 seguidores</h3>
+          <p>Channel whatsapp canal com + de 250 membros.</p>
+          <div class="preco">R$ 9,15</div>
+          <div class="botoes">
+            <a href="https://wa.me/p/25300805002839384/557192793089" target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Canal Whatsapp +250', 'Canal exclusivo no WhatsApp com mais de 250 membros ativos para divulgação e interação, se preferir os seguidores podem ser no seu canal que você já tem.')">Informações</button>
+          </div>
+        </div>
+   <!-- Catálogo 2 -->
+    <div class="catalogo">
+      <div class="produtos">
+        <!-- Produto 1 -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/a342jb.jpg" alt="Produto 2">
+          <h3>Canal Whatsapp com +500 seguidores</h3>
+          <p>Channel whatsapp canal com + de 500 membros.</p>
+          <div class="preco">R$ 14,60</div>
+          <div class="botoes">
+            <a href="https://wa.me/p/25300805002839384/557192793089" target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Canal Whatsapp +500', 'Canal exclusivo no WhatsApp com mais de 500 membros ativos para divulgação e interação, se preferir os seguidores podem ser no seu canal que você já tem.')">Informações</button>
+          </div>
+        </div>
+        <!-- Produto 3 -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/qs8yue.jpg" alt="Produto 3">
+          <h3>Canal Whatsapp com +1 mil membros</h3>
+          <p>Channel whatsapp canal com + de 1000 membros.</p>
+          <div class="preco">R$ 24,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Canal Whatsapp +1000', 'Canal exclusivo no WhatsApp com mais de +1 mil membros ativos para divulgação e interação, se preferir os seguidores podem ser no seu canal que você já tem.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <!-- Produto 4 -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/4u2dd6.jpg" alt="Produto 4">
+          <h3>100 reações positivas (boas) (você escolhe)</h3>
+          <p>100 reações pro seu canal.</p>
+          <div class="preco">R$ 7,20</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Reação no canal!', '100 reações, você pode escolher os emojis que quiser.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Produto 5 -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/tqj3f4.jpg" alt="Produto 5">
+          <h3>100 reações negativas (ruins)</h3>
+          <p>100 reações pro seu canal.</p>
+          <div class="preco">R$ 7,20</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Reação no canal!', '100 reações, ruins.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Produto 6 -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/fskrpa.jpg" alt="Produto 6">
+          <h3>200 reações boas (você escolhe)</h3>
+          <p>200 reações pro seu canal.</p>
+          <div class="preco">R$ 10,20</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Reação no canal!', '200 reações, você pode escolher os emojis que quiser.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Produto 7 -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/o09hge.jpg" alt="Produto 7">
+          <h3>200 reações negativas (ruins)</h3>
+          <p>200 reações pro seu canal.</p>
+          <div class="preco">R$ 8,20</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Reação negativa no canal!', '200 reações negativas.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="catalogo">
+      <h2>💹 Seguidores em outras plataforma</h2>
+      <div class="produtos">
+        <!-- Produto Bot -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/60sxcl.jpg" alt="Produto Bot">
+          <h3>500 seguidores pro instagram </h3>
+          <p>Você pode escolher a quantidade que você quiser</p>
+          <div class="preco">R$ 11,30</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 500 seguidores na sua conta do instagram por 11,30 você pode escolher a quantidade também.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="produto">
+          <img src="https://files.catbox.moe/hb7bud.jpg" alt="Produto 8">
+          <h3>+100 seguidores no instagram</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 2,50</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 100 seguidores na sua conta do instagram por 2,50 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="produto">
+          <img src="https://files.catbox.moe/6nm326.jpg" alt="Produto 9">
+          <h3>+1000 seguidores no instagram (Mais barato)</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 18,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 1000 seguidores na sua conta do instagram por 11,30 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="produto">
+          <img src="https://files.catbox.moe/l5qjkp.jpg" alt="Produto 9">
+          <h3>+100 seguidores reais no instagram</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 12,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 100 seguidores na sua conta do instagram por 12,99 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="produto">
+          <img src="https://files.catbox.moe/m5t5o0.jpg" alt="Produto 9">
+          <h3>+200 curtidas (conta reais) no instagram</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 5,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 1000 seguidores na sua conta do instagram por 11,30 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="produto">
+          <img src="https://files.catbox.moe/64fzg5.jpg" alt="Produto 9">
+          <h3>+20 comentarios (reais) no instagram</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 29,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 20 seguidores na sua conta do instagram por 30,00 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="produto">
+          <img src="https://files.catbox.moe/hb7bud.jpg" alt="Produto 10">
+          <h3>+50000 vizualizações em REEL </h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 5,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 50000 vizu na sua conta do instagram por 5,99 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="produto">
+          <img src="https://files.catbox.moe/sj0pl4.jpg" alt="Produto 9">
+          <h3>+1 comentario de influenciador</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 21,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 1 comentario de um verificado na sua conta do instagram por 21,99 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="produto">
+          <img src="https://files.catbox.moe/gcirpg.jpg" alt="Produto 11">
+          <h3>+500 seguidores no Tiktok</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 8,40</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 500 seguidores na sua conta do Tiktok por 8,40 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="produto">
+          <img src="https://files.catbox.moe/he2y32.jpg" alt="Produto 12">
+          <h3>+5000 vizualizações no Tiktok </h3>
+          <p>Você pode escolher a quantidade que você quiser</p>
+          <div class="preco">R$ 3,00</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 5000 vizualizações no seu Tiktok por 1,00 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="produto">
+          <img src="https://files.catbox.moe/jdzs6k.jpg" alt="Produto 13">
+          <h3>+5000 curtidas no Tiktok</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 3,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 5000 curtidas na sua conta do tiktok por 1,99 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="produto">
+          <img src="https://files.catbox.moe/j0iji1.jpg" alt="Produto 9">
+          <h3>+5000 vizualizações no Tiktok</h3>
+          <p>Você pode escolher a quantidade que você quiser.</p>
+          <div class="preco">R$ 4,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 5000 vizualizações no Tiktok por 4,99 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="produto">
+          <img src="https://files.catbox.moe/w8ocvw.jpg" alt="Produto 9">
+          <h3>+500 curtidas no Tiktok</h3>
+          <p>Você pode escolhe a quantidade que você quiser.</p>
+          <div class="preco">R$ 4,99</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('+ de 1000 seguidores na sua conta do instagram por 11,30 você pode escolher a quantidade também.')')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="catalogo">
+      <h2> Apis </h2>
+      <div class="produtos">
+        <!-- Produto Bot -->
+        <div class="produto">
+          <img src="https://files.catbox.moe/otduch.jpg" alt="Produto Bot">
+          <h3>Apis atualizadas para seu bot, ou site</h3>
+          <p></p>
+          <div class="preco">R$ 4,15</div>
+          <div class="botoes">
+            <a href="https://wa.me/557192793089?text=Olá,%20tudo%20bem?%20Gostaria%20de%20solicitar%20informações%20sobre%20seus%20serviços.%20Aguardo%20retorno,%20por%20favor." target="_blank">Comprar</a>
+            <button class="info-btn" onclick="abrirInfo('Conta denunciada', 'O número é denunciado 10 vezes, em 10 numeros diferentes, 5 vezes.')">Informações</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Modal -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <h3 id="infoTitulo"></h3>
+      <p id="infoTexto"></p>
+      <button class="close" onclick="fecharInfo()">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    function abrirInfo(titulo, texto) {
+      document.getElementById("infoTitulo").innerText = titulo;
+      document.getElementById("infoTexto").innerText = texto;
+      document.getElementById("infoModal").style.display = "flex";
+    }
+    function fecharInfo() {
+      document.getElementById("infoModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>
